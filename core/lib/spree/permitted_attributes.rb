@@ -95,7 +95,7 @@ module Spree
     @@variant_attributes = [
       :name, :presentation, :cost_price, :lock_version,
       :position, :option_value_ids,
-      :product_id, :product, :option_values_attributes, :price, :discount_price, :discount_upto, :video_link, 
+      :product_id, :product, :option_values_attributes, :price, :discount_price, :discount_upto, :video_link,
       :weight, :height, :width, :depth, :sku, :cost_currency, options: [ :name, :value ]]
   end
 end

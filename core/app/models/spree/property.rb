@@ -11,8 +11,6 @@ module Spree
 
     after_touch :touch_all_products
 
-    self.whitelisted_ransackable_attributes = ['presentation']
-
     def self.find_all_by_prototype(prototype)
       id = prototype
       id = prototype.id if prototype.class == Prototype

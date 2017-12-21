@@ -8,8 +8,6 @@ module Spree
 
     default_scope -> { order("#{self.table_name}.position") }
 
-    self.whitelisted_ransackable_attributes = ['value']
-
     # virtual attributes for use with AJAX completion stuff
     def property_name
       property.name if property

@@ -56,8 +56,8 @@ module Spree
       ]
 
       @@variant_attributes = [
-        :id, :name, :sku, :price, :discount_price, :discount_upto, :video_link, :weight, :height, :width, :depth, :is_master,
-        :cost_price, :slug, :description, :track_inventory
+        :id, :name, :sku, :price, :weight, :height, :width, :depth, :is_master,
+        :cost_price, :slug, :description, :track_inventory, :discount_price, :discount_upto, :video_link
       ]
 
       @@image_attributes = [
@@ -84,7 +84,7 @@ module Spree
 
       @@payment_attributes = [
         :id, :source_type, :source_id, :amount, :display_amount,
-        :payment_method_id, :state, :avs_response, :created_at,
+        :payment_method_id, :response_code, :state, :avs_response, :created_at,
         :updated_at
       ]
 

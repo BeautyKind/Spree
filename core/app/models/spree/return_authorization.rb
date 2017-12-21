@@ -22,12 +22,6 @@ module Spree
       end
     end
 
-    self.whitelisted_ransackable_attributes = ['reason']
-
-    def pre_tax_total
-      return_items.sum(:pre_tax_amount)
-    end
-
     def currency
       order.nil? ? Spree::Config[:currency] : order.currency
     end
