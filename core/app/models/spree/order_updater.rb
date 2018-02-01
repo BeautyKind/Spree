@@ -73,7 +73,11 @@ module Spree
                                shipments.sum(:adjustment_total)  +
                                adjustments.eligible.sum(:amount)
       order.included_tax_total = line_items.sum(:included_tax_total) + shipments.sum(:included_tax_total)
-      order.additional_tax_total = line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total)
+      if line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total) == 0
+        calculateOrderTax
+      else
+        order.additional_tax_total = line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total)
+      end
 
       order.promo_total = line_items.sum(:promo_total) +
                           shipments.sum(:promo_total) +
@@ -81,7 +85,20 @@ module Spree
 
       update_order_total
     end
-
+    #calculate additional tax on order total
+    def calculateOrderTax
+      rates = Spree::TaxRate.match(order).first
+      if rates.present?
+        tax_rate = rates.amount
+        item_total = order.item_total + order.adjustment_total
+        if rates.include_shipment_total
+          item_total = item_total + order.shipment_total
+        end        
+        order.additional_tax_total = item_total * tax_rate/100
+      else
+        order.additional_tax_total = 0
+      end
+    end
     def update_item_count
       order.item_count = line_items.sum(:quantity)
     end
