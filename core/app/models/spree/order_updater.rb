@@ -64,7 +64,7 @@ module Spree
     end
 
     def update_order_total
-      order.total = order.item_total + order.shipment_total + order.adjustment_total + order.additional_tax_total + order.donation_total
+      order.total = order.item_total + order.shipment_total + order.adjustment_total + order.additional_tax_total
     end
 
     def update_adjustment_total
