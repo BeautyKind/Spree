@@ -74,7 +74,15 @@ module Spree
                                adjustments.eligible.sum(:amount)
       order.included_tax_total = line_items.sum(:included_tax_total) + shipments.sum(:included_tax_total)
       if line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total) == 0
-        calculateOrderTax
+	if order.completed_at.present?
+	  if (Date.parse(order.completed_at) > Date.parse('2018-02-03'))
+	    calculateOrderTax
+	  else
+	    order.additional_tax_total = line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total)
+	  end
+	else
+          calculateOrderTax
+	end
       else
         order.additional_tax_total = line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total)
       end
