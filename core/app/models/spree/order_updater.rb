@@ -75,7 +75,7 @@ module Spree
       order.included_tax_total = line_items.sum(:included_tax_total) + shipments.sum(:included_tax_total)
       if line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total) == 0
 	if order.completed_at.present?
-	  if (Date.parse(order.completed_at) > Date.parse('2018-02-03'))
+	  if (Date.parse(order.completed_at.to_s) > Date.parse('2018-02-03'))
 	    calculateOrderTax
 	  else
 	    order.additional_tax_total = line_items.sum(:additional_tax_total) + shipments.sum(:additional_tax_total)
