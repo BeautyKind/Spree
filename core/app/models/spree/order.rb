@@ -140,10 +140,6 @@ module Spree
       Spree::Money.new(item_total, { currency: currency })
     end
 
-    def display_donation_total
-      Spree::Money.new(donation_total, { currency: currency })
-    end
-
     def display_adjustment_total
       Spree::Money.new(adjustment_total, { currency: currency })
     end

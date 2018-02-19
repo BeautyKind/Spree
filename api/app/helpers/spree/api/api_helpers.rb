@@ -75,7 +75,7 @@ module Spree
         :user_id, :created_at, :updated_at, :completed_at, :payment_total,
         :shipment_state, :payment_state, :email, :special_instructions, :channel,
         :included_tax_total, :additional_tax_total, :display_included_tax_total,
-        :display_additional_tax_total, :tax_total, :currency, :donation_total, :display_donation_total
+        :display_additional_tax_total, :tax_total, :currency, :cause_id
       ]
 
       @@line_item_attributes = [:id, :quantity, :price, :variant_id]
@@ -122,7 +122,7 @@ module Spree
       @@adjustment_attributes = [
         :id, :source_type, :source_id, :adjustable_type, :adjustable_id,
         :originator_type, :originator_id, :amount, :label, :mandatory,
-        :locked, :eligible,  :created_at, :updated_at
+        :locked, :eligible,  :created_at, :updated_at, :assign_cause
       ]
 
       @@creditcard_attributes = [
